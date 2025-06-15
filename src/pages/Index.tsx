@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import AuthModal from "@/components/AuthModal";
@@ -69,6 +70,7 @@ const Index = () => {
   const [shuffledWords, setShuffledWords] = useState(dutchWords);
   const [currentWordIndex, setCurrentWordIndex] = useState(0);
   const [wordsLearned, setWordsLearned] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     // Check if user is already authenticated
@@ -101,6 +103,9 @@ const Index = () => {
     setHasSelectedLanguage(true);
     localStorage.setItem('selectedLanguage', language);
     toast.success(`You've selected ${language}! Ready to learn?`);
+    setTimeout(() => {
+      navigate('/dashboard');
+    }, 500); // Give a brief moment for the toast to show
   };
 
   const handleNextWord = () => {

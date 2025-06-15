@@ -5,6 +5,33 @@ import { Button } from "@/components/ui/button";
 import { Volume2, ArrowRight, Eye, EyeOff } from "lucide-react";
 import { toast } from "sonner";
 
+// Map English words to image URLs (replace with your own images or use Unsplash, etc.)
+const iconImageMap: Record<string, string> = {
+  cat: "https://images.unsplash.com/photo-1518717758536-85ae29035b6d?auto=format&fit=crop&w=200&q=80",
+  dog: "https://images.unsplash.com/photo-1558788353-f76d92427f16?auto=format&fit=crop&w=200&q=80",
+  house: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80",
+  bicycle: "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=200&q=80",
+  car: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=200&q=80",
+  book: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=200&q=80",
+  coffee: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=200&q=80",
+  apple: "https://images.unsplash.com/photo-1567306226416-28f0efdc88ce?auto=format&fit=crop&w=200&q=80",
+  tree: "https://images.unsplash.com/photo-1465101178521-c1a9136a3a16?auto=format&fit=crop&w=200&q=80",
+  sun: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=200&q=80",
+  moon: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=200&q=80",
+  water: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80",
+  bread: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=200&q=80",
+  milk: "https://images.unsplash.com/photo-1511918984145-48de785d4c4e?auto=format&fit=crop&w=200&q=80",
+  cheese: "https://images.unsplash.com/photo-1512820790803-83ca734da794?auto=format&fit=crop&w=200&q=80",
+  hello: "https://images.unsplash.com/photo-1465101178521-c1a9136a3a16?auto=format&fit=crop&w=200&q=80",
+  "thank you": "https://images.unsplash.com/photo-1465101046530-73398c7f28ca?auto=format&fit=crop&w=200&q=80",
+  red: "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80",
+  blue: "https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?auto=format&fit=crop&w=200&q=80",
+  green: "https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=200&q=80",
+  yellow: "https://images.unsplash.com/photo-1465101178521-c1a9136a3a16?auto=format&fit=crop&w=200&q=80",
+  // Add more mappings as needed
+};
+const defaultIconImage = "https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=200&q=80";
+
 interface WordCardProps {
   word: {
     dutch: string;
@@ -149,56 +176,14 @@ const WordCard = ({ word, onNext, onSpeak }: WordCardProps) => {
             e.currentTarget.style.display = 'none';
           }}
         />
-        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-blue-100 text-6xl">
-          {word.english === 'cat' && '🐱'}
-          {word.english === 'dog' && '🐕'}
-          {word.english === 'house' && '🏠'}
-          {word.english === 'bicycle' && '🚲'}
-          {word.english === 'car' && '🚗'}
-          {word.english === 'book' && '📚'}
-          {word.english === 'coffee' && '☕'}
-          {word.english === 'apple' && '🍎'}
-          {word.english === 'tree' && '🌳'}
-          {word.english === 'sun' && '☀️'}
-          {word.english === 'moon' && '🌙'}
-          {word.english === 'water' && '💧'}
-          {word.english === 'bread' && '🍞'}
-          {word.english === 'milk' && '🥛'}
-          {word.english === 'cheese' && '🧀'}
-          {word.english === 'hello' && '👋'}
-          {word.english === 'thank you' && '🙏'}
-          {word.english === 'red' && '🔴'}
-          {word.english === 'blue' && '🔵'}
-          {word.english === 'green' && '🟢'}
-          {word.english === 'yellow' && '🟡'}
-          {word.english === 'big' && '📏'}
-          {word.english === 'small' && '🔸'}
-          {word.english === 'beautiful' && '🌺'}
-          {word.english === 'fast' && '💨'}
-          {word.english === 'slow' && '🐌'}
-          {word.english === 'warm' && '🔥'}
-          {word.english === 'cold' && '❄️'}
-          {word.english === 'new' && '✨'}
-          {word.english === 'old' && '📜'}
-          {word.english === 'good' && '👍'}
-          {word.english === 'bad' && '👎'}
-          {word.english === 'yes' && '✅'}
-          {word.english === 'no' && '❌'}
-          {word.english === 'please' && '🙏'}
-          {word.english === 'sorry' && '😔'}
-          {word.english === 'goodbye' && '👋'}
-          {word.english === 'good morning' && '🌅'}
-          {word.english === 'good evening' && '🌆'}
-          {word.english === 'good night' && '🌙'}
-          {word.english === 'to eat' && '🍽️'}
-          {word.english === 'to drink' && '🥤'}
-          {word.english === 'to sleep' && '😴'}
-          {word.english === 'to walk' && '🚶'}
-          {word.english === 'to run' && '🏃'}
-          {word.english === 'to talk' && '💬'}
-          {word.english === 'to listen' && '👂'}
-          {word.english === 'to look' && '👀'}
-          {!['cat', 'dog', 'house', 'bicycle', 'car', 'book', 'coffee', 'apple', 'tree', 'sun', 'moon', 'water', 'bread', 'milk', 'cheese', 'hello', 'thank you', 'red', 'blue', 'green', 'yellow', 'big', 'small', 'beautiful', 'fast', 'slow', 'warm', 'cold', 'new', 'old', 'good', 'bad', 'yes', 'no', 'please', 'sorry', 'goodbye', 'good morning', 'good evening', 'good night', 'to eat', 'to drink', 'to sleep', 'to walk', 'to run', 'to talk', 'to listen', 'to look'].includes(word.english) && '🎯'}
+        <div className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-orange-100 to-blue-100">
+          {/* Overlay image for the word */}
+          <img
+            src={iconImageMap[word.english] || defaultIconImage}
+            alt={word.english + ' visual'}
+            className="w-[30rem] h-[25rem] object-contain drop-shadow-lg"
+            style={{ pointerEvents: 'none' }}
+          />
         </div>
       </div>
 
